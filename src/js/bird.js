@@ -84,7 +84,7 @@ export class Bird extends Actor {
     }
 
     goToEndScene(engine) {
-        if (this.eggCount === 2) {
+        if (this.eggCount === 100) {
             engine.goToScene('end')
         }
     }

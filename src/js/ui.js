@@ -4,7 +4,6 @@ import { GameOver } from "./gameOver";
 export class UI extends ScreenElement {
     score = 0;
     highestScore = 0;
-    showHighScore = false;
 
     onInitialize(engine) {
         this.loadScores();
