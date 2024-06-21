@@ -38,10 +38,6 @@ export class UI extends ScreenElement {
     }
 
     updateScore() {
-        if (!this.labelCurrent) {
-            return;
-        }
-
         this.score++;
         this.labelCurrent.text = `Score: ${this.score}`;
         

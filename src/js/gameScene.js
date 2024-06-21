@@ -4,27 +4,29 @@ import { Background } from './background.js'
 import { Wolken } from './wolken.js'
 import { Bird } from './bird.js'
 import { Egg } from './ei.js'
+import { Stone } from './stone.js'
 
 export class GameScene extends Scene {
     constructor() {
         super();
     }
-    
+
     onInitialize(engine) {
         this.addUI();
         this.addBackground();
         this.addWolken();
         this.addBird();
-        this.addEgg(); 
+        this.addEgg();
+        this.addStone();
     }
-  
+
     addEgg(engine) {
         let delay;
         let extraDelay = 0;
 
         for (let i = 0; i < 100; i++) {
             if (this.score < 50) {
-                delay = Math.floor(Math.random() * 1500) + 1000; 
+                delay = Math.floor(Math.random() * 1500) + 1000;
             } else {
                 delay = Math.floor(Math.random() * 750) + 1000;
             }
@@ -32,6 +34,20 @@ export class GameScene extends Scene {
             setTimeout(() => {
                 const egg = new Egg()
                 this.add(egg)
+            }, extraDelay)
+        }
+    }
+
+    addStone(engine) {
+        let delay;
+        let extraDelay = 0;
+
+        for (let i = 0; i < 10; i++) {
+            delay = 12000;
+            extraDelay += delay;
+            setTimeout(() => {
+                const stone = new Stone()
+                this.add(stone)
             }, extraDelay)
         }
     }

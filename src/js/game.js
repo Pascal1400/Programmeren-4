@@ -1,14 +1,23 @@
 import '../css/style.css'
-import { Actor, Engine, Vector, Color, Label, FontUnit, Font, DisplayMode } from "excalibur"
+import { Actor, Engine, Vector, Color, Label, FontUnit, Font, DisplayMode, SolverStrategy } from "excalibur"
 import { Resources, ResourceLoader } from './resources.js'
 import { StartScene } from './startScene.js'
 import { GameScene } from './gameScene.js';
 import { GameOver } from './gameOver.js';
 import { GameEnd } from './endScene.js'
 
+const options = { 
+        width: 1280, 
+        height: 720, 
+        physics: { 
+            solver: SolverStrategy.Realistic,
+            gravity: new Vector(0, 100),
+        }   
+    }
+
 export class Game extends Engine {
     constructor() {
-        super({ width: 1280, height: 720 })
+        super(options)
         this.start(ResourceLoader).then(() => this.startGame())
     }
 

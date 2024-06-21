@@ -1,6 +1,7 @@
-import { Actor, Engine, Vector, Color, Resource, Keys, SpriteSheet, Animation, range, clamp, } from "excalibur"
+import { Actor, Engine, Vector, Color, Resource, Keys, SpriteSheet, Animation, range, clamp, CollisionType } from "excalibur"
 import { Resources, ResourceLoader } from './resources.js'
 import { Egg } from './ei.js'
+import { Stone } from './stone.js'
 import { GameScene } from './gameScene.js'
 
 export class Bird extends Actor {
@@ -31,7 +32,7 @@ export class Bird extends Actor {
     onInitialize(engine) {
         this.pos = new Vector(300, 300);
         this.vel = new Vector(0, 0);
-        this.on('collisionstart', (event) => this.catchEgg(event))
+        this.on('collisionstart', (event) => this.catchEggOrBounceStone(event))
     }
 
     onPreUpdate(engine) {
@@ -71,7 +72,7 @@ export class Bird extends Actor {
         this.vel = new Vector(xspeed, yspeed);
     }
 
-    catchEgg(event, engine) {
+    catchEggOrBounceStone(event, engine) {
         if (event.other instanceof Egg) {
             event.other.kill();
             const gameScene = this.scene;
@@ -80,9 +81,11 @@ export class Bird extends Actor {
                 this.eggCount++;
                 this.goToEndScene(gameScene.engine)
             }
+        } else if (event.other instanceof Stone) {
+            this.body.collisionType = CollisionType.Active
         }
     }
-
+    
     goToEndScene(engine) {
         if (this.eggCount === 100) {
             engine.goToScene('end')

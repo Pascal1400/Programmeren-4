@@ -6,6 +6,7 @@ const Resources = {
     Wolken: new ImageSource('images/wolken.png', { wrapping: ImageWrapping.Repeat }),
     Bird: new ImageSource('images/vogel.png'),
     Egg: new ImageSource('images/ei.png'),
+    Stone: new ImageSource('images/Steen.png'),
     GameOver: new ImageSource('images/GameOver.jpg'),
     GameEnd: new ImageSource('images/GameEnd.jpg')
 }
@@ -15,6 +16,7 @@ const ResourceLoader = new Loader([
     Resources.Wolken,
     Resources.Bird,
     Resources.Egg,
+    Resources.Stone,
     Resources.GameOver,
     Resources.GameEnd
 ])
